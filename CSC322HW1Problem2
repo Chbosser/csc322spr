@@ -1,0 +1,54 @@
+// import THREE
+import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r132/build/three.module.js';
+// import Orbit controls
+import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
+
+// Make Render Window
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );
+// Creates Camera
+const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 500 );
+camera.position.set( 0, 0, 10 );
+camera.lookAt( 0, 5, 0 );
+// Creates Scene
+const scene = new THREE.Scene();
+
+// Material of Line
+const material = new THREE.LineBasicMaterial( { color: 0x16d9e0 } );
+
+// CReation of the Line points
+const points = [];
+points.push( new THREE.Vector3( -2, 0, -2 ) );
+points.push( new THREE.Vector3( 2, 0, -2 ) );
+points.push( new THREE.Vector3( 0, 0, 1.46410161514 ) );
+points.push( new THREE.Vector3( -2, 0, -2 ) );
+points.push( new THREE.Vector3(0 , 2.82842712475, -1) );
+points.push( new THREE.Vector3( 2, 0, -2 ) );
+points.push( new THREE.Vector3(0 , 2.82842712475, -1) );
+points.push( new THREE.Vector3( 0, 0, 1.46410161514 ) );
+
+
+
+
+
+
+const geometry = new THREE.BufferGeometry().setFromPoints( points );
+
+// Creation of the Line
+const line = new THREE.Line( geometry, material );
+
+// Adding the Line to the Scene and Rendering 
+
+scene.add( line );
+renderer.render( scene, camera );
+
+// Orbit Controls
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.screenSpacePanning = false;
+
+function animate () {
+  requestAnimationFrame(animate);
+  renderer.render(scene, camera);
+}
+animate();
