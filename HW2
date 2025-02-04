@@ -1,0 +1,173 @@
+// import THREE
+import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r132/build/three.module.js';
+// import Orbit controls
+import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
+
+
+// Make Render Window
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );
+// Creates Camera
+const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
+camera.position.set( 0, 599, 1445 );
+camera.lookAt( 0, 0, 0 );
+// Creates Scene
+const scene = new THREE.Scene();
+
+
+// MAKE A GEOMETRY FOR EACH PANEL
+const geometry1 = new THREE.BufferGeometry(); // panel 1 red
+const geometry2 = new THREE.BufferGeometry(); // panel 2
+const geometry3 = new THREE.BufferGeometry(); // panel 3
+const geometry4 = new THREE.BufferGeometry(); // panel 4
+// Pyramid Geometry
+const geometry5 = new THREE.BufferGeometry(); // panel 5 red
+const geometry6 = new THREE.BufferGeometry(); // panel 6
+const geometry7 = new THREE.BufferGeometry(); // panel 7
+const geometry8 = new THREE.BufferGeometry(); // panel 8
+
+// MAKE RGB COLORS
+const color5 = new THREE.Color( 'skyblue' );
+const color6 = new THREE.Color( 'darkolivegreen' );
+const color7 = new THREE.Color( 'rgb(250, 0,0)' );
+
+//COORDINATES FOR EACH PANEL
+const vertices1 = new Float32Array( [
+	-27.5, 0,  27.5, // v0
+	 27.5, 0,  27.5, // v1
+	 17,  500,  17, // v2
+
+	 17,  500,  17, // v3
+	-17,  500,  17, // v4
+	-27.5, 0, 27.5  // v5
+] );
+
+const vertices2 = new Float32Array( [
+	27.5, 0,  27.5, // v0
+	 27.5, 0,  -27.5, // v1
+	 17,  500,  -17, // v2
+
+	 17,  500,  -17, // v3
+	17,  500,  17, // v4
+	27.5, 0, 27.5  // v5
+] );
+
+const vertices3 = new Float32Array( [
+	-27.5, 0,  -27.5, // v0
+	 -27.5, 0,  27.5, // v1
+	 -17,  500,  17, // v2
+
+	 -17,  500,  17, // v3
+	-17,  500,  -17, // v4
+	-27.5, 0, -27.5  // v5
+] );
+
+const vertices4 = new Float32Array( [
+	27.5, 0,  -27.5, // v0
+	 -27.5, 0,  -27.5, // v1
+	 17,  500,  -17, // v2
+
+	 -17,  500,  -17, // v3
+	17,  500,  -17, // v4
+	-27.5, 0, -27.5  // v5
+  
+  
+] );
+
+const vertices5 = new Float32Array( [
+	-17, 500,  17, // v0
+	 17, 500,  17, // v1
+	 0,  555,  0, // v2
+  
+] );
+
+const vertices6 = new Float32Array( [
+	17, 500,  17, // v0
+	 17, 500, -17, // v1
+	 0,  555,  0, // v2
+  
+] );
+
+const vertices7 = new Float32Array( [
+	-17, 500,  -17, // v0
+	 -17, 500, 17, // v1
+	 0,  555,  0, // v2
+  
+] );
+
+const vertices8 = new Float32Array( [
+	17, 500,  -17, // v0
+	 -17, 500, -17, // v1
+	 0,  555,  0, // v2
+  
+] );
+
+// Panel 1- RED
+geometry1.setAttribute( 'position', new THREE.BufferAttribute( vertices1, 3 ) );
+const material1 = new THREE.MeshBasicMaterial( { color: color7 } );
+const mesh1 = new THREE.Mesh( geometry1, material1 );
+// Panel 2-GREEN
+geometry2.setAttribute( 'position', new THREE.BufferAttribute( vertices2, 3 ) );
+const material2 = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const mesh2 = new THREE.Mesh( geometry2, material2 );
+// Panel 3-BLUE
+geometry3.setAttribute( 'position', new THREE.BufferAttribute( vertices3, 3 ) );
+const material3 = new THREE.MeshBasicMaterial( { color: 0x0000ff } );
+const mesh3 = new THREE.Mesh( geometry3, material3 );
+// Panel 4-DARK OLIVE GREEN
+geometry4.setAttribute( 'position', new THREE.BufferAttribute( vertices4, 3 ) );
+const material4 = new THREE.MeshBasicMaterial( { color: color6 } );
+const mesh4 = new THREE.Mesh( geometry4, material4 );
+// Pyramid 1-ORANGE
+geometry5.setAttribute( 'position', new THREE.BufferAttribute( vertices5, 3 ) );
+const material5 = new THREE.MeshBasicMaterial( { color: 0xFFA500 } );
+const mesh5 = new THREE.Mesh( geometry5, material5 );
+// Pyramid 2-PURPLE
+geometry6.setAttribute( 'position', new THREE.BufferAttribute( vertices6, 3 ) );
+const material6 = new THREE.MeshBasicMaterial( { color: 0xA020F0 } );
+const mesh6 = new THREE.Mesh( geometry6, material6 );
+// Pyramid 3-WHITE
+geometry7.setAttribute( 'position', new THREE.BufferAttribute( vertices7, 3 ) );
+const material7 = new THREE.MeshBasicMaterial( { color: 0xFFFFFF } );
+const mesh7 = new THREE.Mesh( geometry7, material7 );
+// Pyramid 4-SKY BLUE
+geometry8.setAttribute( 'position', new THREE.BufferAttribute( vertices8, 3 ) );
+const material8 = new THREE.MeshBasicMaterial( { color: color5 } );
+const mesh8 = new THREE.Mesh( geometry8, material8 );
+
+
+
+scene.add( mesh1 );
+scene.add( mesh2 );
+scene.add( mesh3 );
+scene.add( mesh4 );
+scene.add( mesh5 );
+scene.add( mesh6 );
+scene.add( mesh7 );
+scene.add( mesh8 );
+
+renderer.render( scene, camera );
+
+// Orbit Controls
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.screenSpacePanning = true;
+
+function animate () {
+  requestAnimationFrame(animate);
+	// Here individually rotate each side which rotates the whole monument
+  mesh1.rotation.y +=0.03;
+  mesh2.rotation.y +=0.03;
+  mesh3.rotation.y +=0.03;
+  mesh4.rotation.y +=0.03;
+  mesh5.rotation.y +=0.03;
+  mesh6.rotation.y +=0.03;
+  mesh7.rotation.y +=0.03;
+  mesh8.rotation.y +=0.03;
+  
+  renderer.render(scene, camera); // COuldnt figure out how to make the camera at a better angle turned on panning so I could see the monument better
+  // Tried to get the position of the camera to make the image look best but crashed multiple times
+ 
+}
+animate();
+ 
