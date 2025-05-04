@@ -1,0 +1,22 @@
+# Blender 4.3.2 MTL File: 'JIF.blend'
+# www.blender.org
+
+newmtl Bottom
+Ns 1000.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd JIFBottom.jpg
+
+newmtl main.002
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 1
+map_Kd Scaniverse 2025-04-13 133453/Scaniverse 2025-04-13 133453/Scaniverse_2025_04_13_133453.jpg
